@@ -12,12 +12,16 @@ class ModelHelper
     private $m = array();       // meta
     private $fh = array();      // file handler
     private $p = array();       // position
+    private $p_av = array();    // position average fn
     private $smooth = array();  // smooth
     private $value = array();  // smooth
     private $smooth_value = array();  // smooth
     
     private $pA = array();
     private $pB = array();
+    
+    private $sum = array();
+    private $sum_count = array();
     
     public $feed = false;
     private $userid = 1;
@@ -84,12 +88,15 @@ class ModelHelper
         
         $this->m[$name] = $this->feed->get_meta($id);
         $this->fh[$name] = @fopen($this->dir.$id.".dat", 'rb');
-        $this->p[$name] = 0;
+        $this->p[$name] = -1;
+        $this->p_av[$name] = -1;
         $this->pA[$name] = 0;
         $this->pB[$name] = 0;
         $this->smooth[$name] = $smooth;
         $this->value[$name] = 0;
         $this->smooth_value[$name] = 0;
+        $this->sum[$name] = 0;
+        $this->sum_count[$name] = 0;        
     }
 
     // ------------------------------------------------------------------------------
@@ -116,6 +123,21 @@ class ModelHelper
     
         $this->output[$name] = $id;
         $this->buffer[$name] = "";
+    }
+
+    // ------------------------------------------------------------------------------
+    // Basic read without interpolation
+    // ------------------------------------------------------------------------------
+    public function readp($name,$time) 
+    {
+        $fh = $this->fh[$name];
+        $p = floor(($time - $this->m[$name]->start_time) / $this->m[$name]->interval);
+        if ($p>=0 && $p<$this->m[$name]->npoints) {
+            fseek($fh,$p*4);
+            $tmp = @unpack("f",fread($fh,4));
+            if (!is_nan($tmp[1])) return 1.0*$tmp[1];
+        }
+        return false;
     }
 
     // ------------------------------------------------------------------------------
@@ -161,6 +183,83 @@ class ModelHelper
         } else {
             return $this->value[$name];
         }
+    }
+
+    // ------------------------------------------------------------------------------
+    // Read running average
+    // ------------------------------------------------------------------------------
+    public function read_average($name,$time,$length) {
+    
+        $start_time = $this->m[$name]->start_time;
+        $interval = $this->m[$name]->interval;
+        $npoints = $this->m[$name]->npoints;
+        $fh = $this->fh[$name];
+        
+        $lp = $this->p_av[$name];
+        $p = floor(($time - $start_time) / $interval);
+        $this->p_av[$name] = $p;
+
+        /*
+        $start = $time - $length;
+        $end = $time + $length;
+        $sum = 0; $n = 0;
+        for ($time=$start; $time<$end; $time+=3600) {
+            $p = floor(($time - $start_time) / $interval);
+                if ($p>=0 && $p<$npoints) {
+                fseek($fh,$p*4);
+                $tmp = @unpack("f",fread($fh,4));
+                if (!is_nan($tmp[1])) {
+                    $sum += 1.0*$tmp[1];
+                    $n++;
+                }
+            }
+        }*/
+
+        if ($lp!=$p) {
+            
+            $length = round($length/$interval);
+            $p_pos = $p + $length;
+            $p_neg = $p - $length;
+            
+            // Build initial sum at start
+            if ($this->sum_count[$name]==0) {
+                for ($p = $p_neg; $p<$p_pos; $p++) {
+                    if ($p>=0 && $p<$npoints) {
+                        fseek($fh,$p*4);
+                        $tmp = @unpack("f",fread($fh,4));
+                        if (!is_nan($tmp[1])) {
+                            $this->sum[$name] += 1.0*$tmp[1];
+                            $this->sum_count[$name]++;
+                        }
+                    }
+                }
+            }
+           
+            // add value to moving average
+            if ($p_pos<$npoints) {
+                fseek($fh,$p_pos*4);
+                $tmp = @unpack("f",fread($fh,4));
+                if (!is_nan($tmp[1])) {
+                    $this->sum[$name] += 1.0*$tmp[1];
+                    $this->sum_count[$name]++;
+                }
+            }
+            
+            // subtract value from moving average at end
+            if ($p_neg>=0) {
+                fseek($fh,$p_neg*4);
+                $tmp = @unpack("f",fread($fh,4));
+                if (!is_nan($tmp[1])) {
+                    $this->sum[$name] -= 1.0*$tmp[1];
+                    $this->sum_count[$name]--;
+                }
+            }
+        }
+        
+        $average = 0;
+        if ($this->sum_count[$name]>0) $average = $this->sum[$name] / $this->sum_count[$name];
+        return $average;
+        // return $sum / $n;
     }
 
     // ------------------------------------------------------------------------------

@@ -22,18 +22,18 @@ $data->output_feed("model:battery_energy");
 $saveoutput = true;
 
 $households = 110;
-$oversupply = 1.0;
+$oversupply = 1.2;
 
 // $hydro_capacity = 100.00; // Actual hydro capacity
-$hydro_capacity = 112.06 * 0.7; // Hydro capacity that matches demand on annual basis
+$hydro_capacity = 112.06 * 0.55; // Hydro capacity that matches demand on annual basis
 $hydro_capacity *= $oversupply;
 
-$solar_capacity = 4.483 * 0.3 * $households; // 4.48kW per household required for generation to match demand on an annual basis
-$solar_capacity *= $oversupply;
+$solar_capacity = 4.483 * 0.45 * $households; // 4.48kW per household required for generation to match demand on an annual basis
+$solar_capacity *= $oversupply * 1.6;
 
 // Battery storage
 $battery_enabled = true;
-$battery_capacity = 7.0*$households;
+$battery_capacity = 100.0*$households;
 $battery_energy = $battery_capacity * 0.5; // starting capacity
 
 // co2 intensity of electric assuming 2018 average grid intensity
