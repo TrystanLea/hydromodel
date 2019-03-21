@@ -1,3 +1,27 @@
+## How to run this model
+
+1. Install Emoncms on your computer, used for data access and visualisation, see installation guides: [https://github.com/emoncms/emoncms](https://github.com/emoncms/emoncms) and create a user account.
+
+2. Git clone this repository: 
+
+    git clone https://github.com/trystanlea/hydromodel.git
+    
+3. Unzip dataset.zip into a folder called dataset
+
+4. Run load_dataset.php, script assumes emoncms is installed at /var/www/emoncms and user account id is 1. This can be changed at the top of the script.
+
+    sudo php load_dataset.php
+
+5. Check you emoncms account for the loaded datasets.
+
+6. Run the model:
+
+    sudo php 1.php
+    
+7. View and explore the results in the emoncms account created earlier.
+
+8. Try all 4 models!
+
 ## title: Exploring Community Energy Supply, Matching Supply and Demand
 ### published: 2019-3-21
 
