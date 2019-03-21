@@ -14,13 +14,35 @@
 
 5. Check you emoncms account for the loaded datasets.
 
+![load1.png](images/load1.png)
+
 6. Run the model:
 
-    sudo php 1.php
+    sudo php 4.php
     
+Model 4 result summary:
+            
+    Hydro:                             258088 kWh (39.8%)
+    Solar:                             211173 kWh (9.1%)
+    Renewable generation:              469261 kWh
+    Community demand:                  391052 kWh
+    Oversupply:                        120.0 %
+    Excess:                            116866 kWh
+    Unmet:                             408 kWh
+    Backup:                            46623 kWh
+    Demand supplied after backup:      99.90 %
+    Renewable self consumption:        75.10 %
+    Average CO2 Intensity:             0 gCO2/kWh
+        
 7. View and explore the results in the emoncms account created earlier.
 
+![load2.png](images/load2.png)
+
+![dataviewer.png](images/dataviewer.png)
+
 8. Try all 4 models!
+
+Enjoy :)
 
 ## title: Exploring Community Energy Supply, Matching Supply and Demand
 ### published: 2019-3-21
