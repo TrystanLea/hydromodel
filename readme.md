@@ -1,49 +1,3 @@
-## How to run this model
-
-1. Install Emoncms on your computer, used for data access and visualisation, see installation guides: [https://github.com/emoncms/emoncms](https://github.com/emoncms/emoncms) and create a user account.
-
-2. Git clone this repository: 
-
-    git clone https://github.com/trystanlea/hydromodel.git
-    
-3. Unzip dataset.zip into a folder called dataset
-
-4. Run load_dataset.php, script assumes emoncms is installed at /var/www/emoncms and user account id is 1. This can be changed at the top of the script.
-
-    sudo php load_dataset.php
-
-5. Check you emoncms account for the loaded datasets.
-
-![load1.png](images/load1.png)
-
-6. Run the model:
-
-    sudo php 4.php
-    
-Model 4 result summary:
-            
-    Hydro:                             258088 kWh (39.8%)
-    Solar:                             211173 kWh (9.1%)
-    Renewable generation:              469261 kWh
-    Community demand:                  391052 kWh
-    Oversupply:                        120.0 %
-    Excess:                            116866 kWh
-    Unmet:                             408 kWh
-    Backup:                            46623 kWh
-    Demand supplied after backup:      99.90 %
-    Renewable self consumption:        75.10 %
-    Average CO2 Intensity:             0 gCO2/kWh
-        
-7. View and explore the results in the emoncms account created earlier.
-
-![load2.png](images/load2.png)
-
-![dataviewer.png](images/dataviewer.png)
-
-8. Try all 4 models!
-
-Enjoy :)
-
 ## title: Exploring Community Energy Supply, Matching Supply and Demand
 ### published: 2019-3-21
 
@@ -84,7 +38,7 @@ Take a look at the source code here for a clearer look at how it works:<br>
     
 We can see here the 60% matching mentioned above which is the main result of this simple model. As an aside the model calculates the resulting carbon intensity of the electricity supply assuming imported grid electricity is roughly equal to the UK average carbon intensity in 2018 of [283 gCO2/kWh](https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2018), the community average CO2 intensity works out to 283 gCO2/kWh x 40% backup = 113 gCO2/kWh, a good starting point!
 
-**Technical note:** The model is designed for use in conjunction with emoncms which is used for the original data collection and to graph the model results. Emoncms is open source and available for download here: [http://github.com/emoncms/emoncms](http://github.com/emoncms/emoncms). To run the model yourself follow the guide here: RUN THE MODEL GUIDE
+**Technical note:** The model is designed for use in conjunction with emoncms which is used for the original data collection and to graph the model results. Emoncms is open source and available for download here: [http://github.com/emoncms/emoncms](http://github.com/emoncms/emoncms). To run the model yourself follow the guide at the bottom of this page.
 
 <div style="border-bottom:1px solid #ccc"></div>
 
@@ -272,3 +226,51 @@ The above scenarios have all focused on supply side measures and battery storage
 ### Looking at costs
 
 The above analysis really needs to take into account costs, the proportions of each technology used depends as much on cost as it does on the technical optimum proportions. I have explored costs before for a wind and solar system with backup gas turbines here: [https://learn.openenergymonitor.org/sustainable-energy/energy/costs](https://learn.openenergymonitor.org/sustainable-energy/energy/costs). It would be great to expand on the above with a similar analysis.
+
+---
+
+# How to run this model
+
+1. Install Emoncms on your computer, used for data access and visualisation, see installation guides: [https://github.com/emoncms/emoncms](https://github.com/emoncms/emoncms) and create a user account.
+
+2. Git clone this repository: 
+
+    git clone https://github.com/trystanlea/hydromodel.git
+    
+3. Unzip dataset.zip into a folder called dataset
+
+4. Run load_dataset.php, script assumes emoncms is installed at /var/www/emoncms and user account id is 1. This can be changed at the top of the script.
+
+    sudo php load_dataset.php
+
+5. Check you emoncms account for the loaded datasets.
+
+![load1.png](images/load1.png)
+
+6. Run the model:
+
+    sudo php 4.php
+    
+Model 4 result summary:
+            
+    Hydro:                             258088 kWh (39.8%)
+    Solar:                             211173 kWh (9.1%)
+    Renewable generation:              469261 kWh
+    Community demand:                  391052 kWh
+    Oversupply:                        120.0 %
+    Excess:                            116866 kWh
+    Unmet:                             408 kWh
+    Backup:                            46623 kWh
+    Demand supplied after backup:      99.90 %
+    Renewable self consumption:        75.10 %
+    Average CO2 Intensity:             0 gCO2/kWh
+        
+7. View and explore the results in the emoncms account created earlier.
+
+![load2.png](images/load2.png)
+
+![dataviewer.png](images/dataviewer.png)
+
+8. Try all 4 models!
+
+Enjoy :)
