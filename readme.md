@@ -3,7 +3,7 @@
 
 ### [https://trystanlea.org.uk/hydro](https://trystanlea.org.uk/hydro)
 
-### [How to run this model](readme.md#how-to-run-this-model)
+### [Guide: How to run this model](readme.md#how-to-run-this-model)
 
 ---
 
