@@ -1,7 +1,7 @@
 ## title: Exploring Community Energy Supply, Matching Supply and Demand
 ### published: 2019-3-21
 
-### [https://trystanlea.org.uk/hydro](https://trystanlea.org.uk/hydro)
+### [https://trystanlea.org.uk/communityenergy1](https://trystanlea.org.uk/communityenergy1)
 
 ### [Guide: How to run this model](readme.md#how-to-run-this-model)
 
