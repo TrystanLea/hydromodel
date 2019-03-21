@@ -1,7 +1,7 @@
-# [https://trystanlea.org.uk/hydro](https://trystanlea.org.uk/hydro)
-
 ## title: Exploring Community Energy Supply, Matching Supply and Demand
 ### published: 2019-3-21
+
+### [https://trystanlea.org.uk/hydro](https://trystanlea.org.uk/hydro)
 
 Now that we have more than one year of half hourly generation data from both the Bethesda and Llanberis run of the river hydro generators, its a good point to assess how well hydro generation matches local electricity demand and how the combination of different technologies including: solar, wind, storage and backup AD gas turbines can provide a zero carbon electricity supply that matches demand at all times.
 
