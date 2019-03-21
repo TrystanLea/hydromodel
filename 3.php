@@ -15,6 +15,8 @@ $data->input_feed("model:solar1",0);      // Normalised solar dataset
 $data->input_feed("model:community",0);   // Bethesda community dataset ~110 households
 
 $data->output_feed("model:supply");
+$data->output_feed("model:hydro_gen");
+$data->output_feed("model:solar_gen");
 $data->output_feed("model:demand");
 $data->output_feed("model:excess");
 $data->output_feed("model:unmet");
@@ -29,11 +31,11 @@ $hydro_capacity = 112.06 * 0.55; // Hydro capacity that matches demand on annual
 $hydro_capacity *= $oversupply;
 
 $solar_capacity = 4.483 * 0.45 * $households; // 4.48kW per household required for generation to match demand on an annual basis
-$solar_capacity *= $oversupply * 1.6;
+$solar_capacity *= $oversupply;
 
 // Battery storage
 $battery_enabled = true;
-$battery_capacity = 100.0*$households;
+$battery_capacity = 7.0*$households;
 $battery_energy = $battery_capacity * 0.5; // starting capacity
 
 // co2 intensity of electric assuming 2018 average grid intensity
@@ -108,6 +110,8 @@ while(true)
     
     // 7. Write output to output feed  
     if ($saveoutput) {
+        $data->write("model:hydro_gen",$hydro);
+        $data->write("model:solar_gen",$solar);
         $data->write("model:supply",$supply);
         $data->write("model:demand",$demand);
         $data->write("model:excess",$excess);
