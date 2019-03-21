@@ -213,7 +213,7 @@ print str_pad("Oversupply:",$pad).number_format($oversupply*100,1)." %\n";
 print str_pad("Excess:",$pad).round($excess_kwh)." kWh\n";
 print str_pad("Unmet:",$pad).round($unmet_kwh)." kWh\n";
 print str_pad("Backup:",$pad).round($backup_kwh)." kWh\n";
-print str_pad("Demand supplied before backup:",$pad).number_format($met_demand_prc*100,2)." %\n";
+print str_pad("Demand supplied after backup:",$pad).number_format($met_demand_prc*100,2)." %\n";
 print str_pad("Renewable self consumption:",$pad).number_format($renewable_self_use_prc*100,2)." %\n";
 print str_pad("Average CO2 Intensity:",$pad).round($co2_intensity)." gCO2/kWh\n";
 
