@@ -5,6 +5,8 @@
 
 ### [How to run this model](readme.md#how-to-run-this-model)
 
+---
+
 Now that we have more than one year of half hourly generation data from both the Bethesda and Llanberis run of the river hydro generators, its a good point to assess how well hydro generation matches local electricity demand and how the combination of different technologies including: solar, wind, storage and backup AD gas turbines can provide a zero carbon electricity supply that matches demand at all times.
 
 On an annual basis the [100kW Afon Berthen hydro](http://www.ellergreen.com/hydro/portfolio-item/berthen/) generates ~90% of the electricity demand of the ~110 households. The hydro generates a lot of electricity when it rains, its output then tails off when the rain stops, it is a run of the river system, there is no dam to store the water for later use when needed. Luckily it rains quite a bit here and it rains more in winter than in summer, matching the seasonal pattern of demand quite well. This said there are still substantial periods where the hydro generates more electricity than the households can consume and other periods where the hydro is not generating enough.
