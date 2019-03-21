@@ -3,6 +3,8 @@
 
 ### [https://trystanlea.org.uk/hydro](https://trystanlea.org.uk/hydro)
 
+### [How to run this model](readme.md#how-to-run-this-model)
+
 Now that we have more than one year of half hourly generation data from both the Bethesda and Llanberis run of the river hydro generators, its a good point to assess how well hydro generation matches local electricity demand and how the combination of different technologies including: solar, wind, storage and backup AD gas turbines can provide a zero carbon electricity supply that matches demand at all times.
 
 On an annual basis the [100kW Afon Berthen hydro](http://www.ellergreen.com/hydro/portfolio-item/berthen/) generates ~90% of the electricity demand of the ~110 households. The hydro generates a lot of electricity when it rains, its output then tails off when the rain stops, it is a run of the river system, there is no dam to store the water for later use when needed. Luckily it rains quite a bit here and it rains more in winter than in summer, matching the seasonal pattern of demand quite well. This said there are still substantial periods where the hydro generates more electricity than the households can consume and other periods where the hydro is not generating enough.
@@ -38,7 +40,7 @@ Take a look at the source code here for a clearer look at how it works:<br>
     
 We can see here the 60% matching mentioned above which is the main result of this simple model. As an aside the model calculates the resulting carbon intensity of the electricity supply assuming imported grid electricity is roughly equal to the UK average carbon intensity in 2018 of [283 gCO2/kWh](https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2018), the community average CO2 intensity works out to 283 gCO2/kWh x 40% backup = 113 gCO2/kWh, a good starting point!
 
-**Technical note:** The model is designed for use in conjunction with emoncms which is used for the original data collection and to graph the model results. Emoncms is open source and available for download here: [http://github.com/emoncms/emoncms](http://github.com/emoncms/emoncms). To run the model yourself follow the guide at the bottom of this page.
+**Technical note:** The model is designed for use in conjunction with emoncms which is used for the original data collection and to graph the model results. Emoncms is open source and available for download here: [http://github.com/emoncms/emoncms](http://github.com/emoncms/emoncms). To run the model yourself follow the guide here [readme.md#how-to-run-this-model](readme.md#how-to-run-this-model)
 
 <div style="border-bottom:1px solid #ccc"></div>
 
